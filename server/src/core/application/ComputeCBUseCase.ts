@@ -1,7 +1,7 @@
 import type { RouteEntity } from "../domain/Route";
-import { TARGET_INTENSITY } from "../../shared/constants";
 import type { CBRecord } from "../domain/ComplianceBalance";
 import type { ComplianceRepositoryPort } from "../ports/ComplianceRepositoryPort";
+import { TARGET_INTENSITY } from "../../shared/contstants";
 
 export class ComputeCBUseCase {
   private complianceRepo: ComplianceRepositoryPort;

@@ -1,5 +1,5 @@
 export type RouteEntity = {
-  id?: number;
+  id: number;
   routeId: string;
   vesselType: string;
   fuelType: string;

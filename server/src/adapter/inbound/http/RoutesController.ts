@@ -9,8 +9,8 @@ import { BankingUseCase } from "../../../core/application/BankingUseCase";
 import { ComputeCBUseCase } from "../../../core/application/ComputeCBUseCase";
 import { SetBaselineUseCase } from "../../../core/application/SetBaselineUseCase";
 import { ComputeComparisonUseCase } from "../../../core/application/ComputeComparisonUseCase";
+import { TARGET_INTENSITY } from "../../../shared/contstants";
 
-import { TARGET_INTENSITY } from "../../../shared/constants";
 
 const router = express.Router();
 
