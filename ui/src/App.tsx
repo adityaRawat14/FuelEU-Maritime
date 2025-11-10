@@ -1,77 +1,33 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./adapters/ui/pages/Home";
+import RoutesLayout from "./adapters/ui/pages/Routes/RoutesLayout";
+import RoutesList from "./adapters/ui/pages/Routes/RoutesList";
+import RoutesComparison from "./adapters/ui/pages/Routes/RoutesComparision";
+import NavBar from "./components/NavBar";
+// TODO: Banking & Pooling pages (skeleton)
+const Banking = () => <div className="bg-white p-4 rounded">Banking (TODO)</div>;
+const Pooling = () => <div className="bg-white p-4 rounded">Pooling (TODO)</div>;
 
-import Banking from "./adapters/ui/Banking";
-import Pooling from "./adapters/ui/Pooling";
-import Home from "./adapters/ui/Home";
-import RoutesPage from "./adapters/ui/RoutesPage";
-import Compare from "./adapters/ui/Compare";
-import { DataProvider } from "./context/DataContext";
-
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
-        {/* Navbar */}
-        <nav className="bg-white shadow-md p-4 flex justify-between items-center">
-          <h1 className="text-xl font-semibold text-blue-700">
-            FuelEU Compliance Dashboard
-          </h1>
-          <div className="flex gap-6">
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                `hover:text-blue-600 ${isActive ? "text-blue-600 font-bold" : "text-gray-600"}`
-              }
-            >
-              Home
-            </NavLink>
-
-            <NavLink
-              to="/routes"
-              className={({ isActive }) =>
-                `hover:text-blue-600 ${isActive ? "text-blue-600 font-bold" : "text-gray-600"}`
-              }
-            >
-              Routes
-            </NavLink>
-
-            <NavLink
-              to="/banking"
-              className={({ isActive }) =>
-                `hover:text-blue-600 ${isActive ? "text-blue-600 font-bold" : "text-gray-600"}`
-              }
-            >
-              Banking
-            </NavLink>
-
-            <NavLink
-              to="/pooling"
-              className={({ isActive }) =>
-                `hover:text-blue-600 ${isActive ? "text-blue-600 font-bold" : "text-gray-600"}`
-              }
-            >
-              Pooling
-            </NavLink>
-          </div>
-        </nav>
-
-        {/* Page Content */}
-        <main className="flex-1 p-6">
-          <DataProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/banking" element={<Banking />} />
-              <Route path="/pooling" element={<Pooling />} />
-              <Route path="/routes" element={<RoutesPage />}>
-                <Route path="/routes/compare" element={<Compare />} />
-              </Route>
-            </Routes>
-          </DataProvider>
+      <div className="min-h-screen flex flex-col">
+        <NavBar />
+        <main className="p-6 flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/routes" element={<RoutesLayout />}>
+              <Route index element={<RoutesList />} />
+              <Route path="comparison" element={<RoutesComparison />} />
+            </Route>
+            <Route path="/banking" element={<Banking />} />
+            <Route path="/pooling" element={<Pooling />} />
+          </Routes>
         </main>
       </div>
     </Router>
   );
-}
+};
 
 export default App;
