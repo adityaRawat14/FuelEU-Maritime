@@ -1,0 +1,64 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Environment Settings
+    // *** FIX: Use NodeNext for Module Resolution for consistency ***
+    "module": "NodeNext",
+    "target": "ES2022",
+    "moduleResolution": "NodeNext", // <-- ADDED: Crucial for "module": "NodeNext"
+    
+    // Explicitly include Node.js types and modern libraries
+    "lib": ["ES2022"], // <-- UPDATED: Ensures access to modern JS APIs
+    "types": ["node"], // <-- UPDATED: Requires `npm install -D @types/node`
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Recommended Options
+    "strict": true,
+    
+    // Removed: "jsx": "react-jsx" - not typically needed for a pure backend
+    
+    // Strict Module Options (Verbatim requires proper module setup)
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  },
+  // Ensure the TypeScript compiler only looks inside the 'src' directory
+  "include": ["src/**/*"] 
+}
+
+
+
+
+
+
+
+// import { defineConfig, env } from "prisma/config";
+// import "dotenv/config";
+// import { config } from "dotenv";
+
+// config();
+
+// export default defineConfig({
+//   schema: "prisma/schema.prisma",
+//   migrations: {
+//     path: "prisma/migrations",
+//   },
+//   engine: "classic",
+//   datasource: {
+//     url: env("DATABASE_URL"),
+//   },
+// });
