@@ -78,10 +78,6 @@ router.post("/compliance/compute", async (req, res) => {
   res.json(rec);
 });
 
-/**
- * Banking endpoints
- */
-// GET /banking/records?shipId=&year=
 router.get("/banking/records", async (req, res) => {
   const { shipId, year } = req.query;
   if (!shipId || !year) return res.status(400).json({ error: "shipId and year required" });
@@ -89,7 +85,6 @@ router.get("/banking/records", async (req, res) => {
   res.json({ shipId, year: Number(year), banked: amount });
 });
 
-// POST /banking/bank => { shipId, year, amount }
 router.post("/banking/bank", async (req, res) => {
   const { shipId, year, amount } = req.body;
   try {
@@ -100,7 +95,6 @@ router.post("/banking/bank", async (req, res) => {
   }
 });
 
-// POST /banking/apply => { shipId, year, amount }
 router.post("/banking/apply", async (req, res) => {
   const { shipId, year, amount } = req.body;
   try {
@@ -111,26 +105,20 @@ router.post("/banking/apply", async (req, res) => {
   }
 });
 
-/**
- * Pooling - simple greedy allocation handled here for demo:
- * POST /pools { year, members: [{ shipId, cb_before }] }
- */
+
 router.post("/pools", async (req, res) => {
   const { year, members } = req.body;
   if (!year || !Array.isArray(members)) return res.status(400).json({ error: "year and members required" });
 
-  // greedy allocation: sort by cb descending (surplus to deficits)
   const sorted = [...members].sort((a, b) => b.cb_before - a.cb_before);
 
-  // compute sum
+
   const sum = members.reduce((s: number, m: any) => s + Number(m.cb_before), 0);
   if (sum < 0) return res.status(400).json({ error: "Sum of CB must be >= 0" });
 
-  // naive greedy: distribute surplus to deficits
   const deficits = sorted.filter((m) => m.cb_before < 0).map((m) => ({ ...m }));
   const surplus = sorted.filter((m) => m.cb_before > 0).map((m) => ({ ...m }));
 
-  // convert to mutable
   for (const d of deficits) {
     let needed = -d.cb_before;
     for (const s of surplus) {
@@ -142,7 +130,6 @@ router.post("/pools", async (req, res) => {
     }
   }
 
-  // Now cb_after is the new cb_before values
   const membersAfter = sorted.map((m) => ({ shipId: m.shipId, cb_before: m.cb_before, cb_after: m.cb_before }));
 
   await poolingRepo.createPool(Number(year), membersAfter);

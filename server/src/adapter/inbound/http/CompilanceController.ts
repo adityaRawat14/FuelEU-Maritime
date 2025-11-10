@@ -58,8 +58,8 @@ router.get("/adjusted-cb", async (req, res) => {
   const out = [];
   for (const r of routes) {
     const cb_before = computeCBUseCase.computeCBForRoute(r);
-    const banked = await bankingRepo.getBanked(r.routeId, year); // sum of bank entries
-    const cb_after = cb_before + (banked ?? 0); // applying all banked would increase CB (surplus reduces deficit)
+    const banked = await bankingRepo.getBanked(r.routeId, year); 
+    const cb_after = cb_before + (banked ?? 0);
     out.push({
       shipId: r.routeId,
       vesselType: r.vesselType,

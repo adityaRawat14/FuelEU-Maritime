@@ -16,7 +16,6 @@ export class BankingRepository implements BankingRepositoryPort {
   }
 
   async applyBank(shipId: string, year: number, amount: number): Promise<void> {
-    // apply means add a negative bank entry (consumption) or store logic as needed
     await prisma.bankEntry.create({
       data: { shipId, year, amount_gco2eq: -Math.abs(amount) },
     });
