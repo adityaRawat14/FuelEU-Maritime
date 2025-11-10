@@ -96,6 +96,11 @@ npm run dev
 
 
 ```
+![image alt](https://github.com/adityaRawat14/FuelEU-Maritime/blob/master/Screenshot%202025-11-11%20014435.png)
+![image alt](https://github.com/adityaRawat14/FuelEU-Maritime/blob/master/Screenshot%202025-11-11%20014442.png)
+![image alt](https://github.com/adityaRawat14/FuelEU-Maritime/blob/master/Screenshot%202025-11-11%20014504.png)
+![image alt](https://github.com/adityaRawat14/FuelEU-Maritime/blob/master/Screenshot%202025-11-11%20020307.png)
+![image alt](https://github.com/adityaRawat14/FuelEU-Maritime/blob/master/Screenshot%202025-11-11%20020338.png)
 
 ## 📦 Tech Stack
 Layer	Technology
