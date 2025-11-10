@@ -14,7 +14,6 @@ type RoutesContextType = {
   fetchBanking: () => Promise<any[]>;
   fetchPooling: () => Promise<any[]>;
 
-  // Newly added features
   fetchComplianceCB: (year: number) => Promise<any[]>;
   fetchAdjustedCB: (year: number) => Promise<any[]>;
   bankSurplus: (shipId: string, year: number, amount: number) => Promise<any>;
@@ -66,7 +65,6 @@ export const RoutesProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   };
 
-  // ---------- 🆕 New methods for Compliance, Banking, and Pooling ----------
   const fetchComplianceCB = async (year: number) => {
     try {
       return await api.getComplianceCB(year);

@@ -31,12 +31,12 @@ export class RoutesApiAdapter implements RoutesRepositoryPort {
   
   async getComplianceCB(year: number) {
     const res = await axios.get(`${BASE}/compliance/cb`, { params: { year }});
-    return res.data; // array of { shipId, vesselType, year, cb_before }
+    return res.data; 
   }
 
   async getAdjustedCB(year: number) {
     const res = await axios.get(`${BASE}/compliance/adjusted-cb`, { params: { year }});
-    return res.data; // array of { shipId, cb_before, banked, cb_after }
+    return res.data;
   }
 
   async bankSurplus(shipId: string, year: number, amount: number) {
